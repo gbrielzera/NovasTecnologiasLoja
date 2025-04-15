@@ -10,8 +10,9 @@ def menu():
         print("1. Ver produtos")
         print("2. Adicionar ao carrinho")
         print("3. Ver carrinho")
-        print("4. Finalizar compra")
-        print("5. Sair")
+        print("4. Remover um produto do carrinho")
+        print("5. Finalizar compra")
+        print("6. Sair")
 
         opcao = input("Escolha uma opção: ")
 
@@ -27,24 +28,36 @@ def menu():
                 i = int(input("Escolha o produto: "))
                 i -= 1
                 q = int(input("Escolha a quantidade: "))
+
                 produto = loja.getProduto(i)
                 if produto:
                     carrinho.adicionarProduto(produto, q)
                     print(f"Produto {produto.nome} adicionado ao carrinho.")
-            
+
             except:
                 print("Entrada inválida.")
-
 
         elif opcao == '3':
             print("\n")
             carrinho.exibirItensCarrinho()
             print(f"Total: R${carrinho.calcularTotal():.2f}")
 
-        elif opcao == '4':
-            loja.realizar_pagamento(carrinho)
-        
+        elif opcao == "4":
+            if not carrinho.itens:
+                print("Carrinho vazio!")
+                continue
+                
+            carrinho.exibirItensCarrinho()
+            try:
+                indice = int(input("Digite o número do item para remover: ")) - 1
+                carrinho.removerProduto(indice)
+            except ValueError:
+                print("Entrada inválida!")
+
         elif opcao == '5':
+            loja.realizar_pagamento(carrinho)
+
+        elif opcao == '6':
             print("\n")
             print("Saindo da loja Gabriel UCB, volte sempre!")
             break
@@ -54,4 +67,3 @@ def menu():
 
 if __name__ == "__main__": 
     menu()
-
