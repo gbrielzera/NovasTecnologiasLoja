@@ -6,13 +6,12 @@ def menu():
     carrinho = Carrinho()
 
     while True:
-        print("\nBem vindo a loja de roupas UCB!")
+        print("\nBem vindo a loja de roupas Gabriel UCB!")
         print("1. Ver produtos")
         print("2. Adicionar ao carrinho")
-        print("3. Aplicar desconto")
-        print("4. Ver carrinho")
-        print("5. Finalizar compra")
-        print("6. Sair")
+        print("3. Ver carrinho")
+        print("4. Finalizar compra")
+        print("5. Sair")
 
         opcao = input("Escolha uma opção: ")
 
@@ -36,39 +35,18 @@ def menu():
             except:
                 print("Entrada inválida.")
 
-        elif opcao == '3':
-            print("\n")
-            loja.exibirProdutos()
-            try:
-                i = int(input("Escolha o numero do produto para aplicar o desconto: "))
-                i -= 1
-                p = float(input("Escolha o percentual desconto sem o % (Ex: 10, 3.5, 45): "))
-                produto = loja.getProduto(i)
-                if produto:
-                    produto.usarDesconto(p)
-                    print(f"Desconto de {p}% aplicado ao produto {produto.nome}.")
-            except:
-                print("Entrada inválida.")
 
-        elif opcao == '4':
+        elif opcao == '3':
             print("\n")
             carrinho.exibirItensCarrinho()
             print(f"Total: R${carrinho.calcularTotal():.2f}")
 
+        elif opcao == '4':
+            loja.realizar_pagamento(carrinho)
+        
         elif opcao == '5':
             print("\n")
-            total = carrinho.calcularTotal()
-            print(f"Total da compra: R${total:.2f}")
-            valor = float(input("Digite o valor a ser pago: "))
-            if valor >= total:
-                print(f"Compra finalizada! Troco: R${valor - total:.2f}")
-                carrinho.esvaziarCarrinho()
-            else:
-                print("Valor insuficiente!")
-        
-        elif opcao == '6':
-            print("\n")
-            print("Saindo da loja UCB, volte sempre!")
+            print("Saindo da loja Gabriel UCB, volte sempre!")
             break
             
         else:
