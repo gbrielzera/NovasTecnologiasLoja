@@ -36,7 +36,7 @@ class Loja:
         print("\nFormas de pagamento:")
         print("1 - Débito (5% de desconto)")
         print("2 - Crédito (10% de taxa)")
-        print("3 - Pix (10% de desconto)")
+        print("3 - Pix (15% de desconto)")
 
         opcao = input("Escolha a forma de pagamento (1, 2 ou 3): ")
         total = carrinho.calcularTotal()
@@ -50,7 +50,7 @@ class Loja:
             total += taxa
             print(f"\nTaxa de R$ {taxa:.2f} adicionada.")
         elif opcao == "3":
-            desconto = total * 0.10
+            desconto = total * 0.15
             total -= desconto
             print(f"\nDesconto de R$ {desconto:.2f} aplicado.")
         else:
