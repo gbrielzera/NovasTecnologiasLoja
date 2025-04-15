@@ -22,3 +22,13 @@ class Carrinho:
     def esvaziarCarrinho(self):
         self.itens.clear()
         print("Carrinho esvaziado!")
+
+    def removerProduto(self, indice):
+        if 0 <= indice < len(self.itens):
+            produto, quantidade = self.itens.pop(indice)
+            produto.estoque += quantidade
+            print(f"Produto '{produto.nome}' removido do carrinho!")
+            return True
+        else:
+            print("Índice inválido!")
+            return False
